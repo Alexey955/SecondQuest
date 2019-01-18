@@ -1,4 +1,5 @@
-package classes;
+import classes.Point;
+import classes.Quad;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,7 +13,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
 
-        Point point = new Point(1, 1);
+        Point point = new Point(Integer.parseInt(args[1]), Integer.parseInt(args[2]));
 
         Function<String, Point> funcPointsList =
                 x -> {
@@ -29,9 +30,7 @@ public class Main {
                     return new Point(numX, numY);
                 };
 
-        String filePath = "src/main/resources/FileInput.txt";
-
-        List<Point> pointsList =  Files.lines(Paths.get(filePath))
+        List<Point> pointsList =  Files.lines(Paths.get(args[0]))
                 .map(funcPointsList)
                 .collect(Collectors.toList());
 
